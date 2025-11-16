@@ -18,15 +18,36 @@ export default function Home() {
   const [isTranslating, setIsTranslating] = useState(false);
 
   const languages = [
-    { code: "pt", name: "Português" },
-    { code: "en", name: "Inglês" },
-    { code: "es", name: "Espanhol" },
-    { code: "fr", name: "Francês" },
-    { code: "de", name: "Alemão" },
-    { code: "it", name: "Italiano" },
-    { code: "ja", name: "Japonês" },
-    { code: "ko", name: "Coreano" },
-    { code: "zh", name: "Chinês" },
+    { code: "pt", name: "Português", flag: "🇧🇷" },
+    { code: "en", name: "Inglês", flag: "🇺🇸" },
+    { code: "es", name: "Espanhol", flag: "🇪🇸" },
+    { code: "fr", name: "Francês", flag: "🇫🇷" },
+    { code: "de", name: "Alemão", flag: "🇩🇪" },
+    { code: "it", name: "Italiano", flag: "🇮🇹" },
+    { code: "ja", name: "Japonês", flag: "🇯🇵" },
+    { code: "ko", name: "Coreano", flag: "🇰🇷" },
+    { code: "zh", name: "Chinês", flag: "🇨🇳" },
+    { code: "ru", name: "Russo", flag: "🇷🇺" },
+    { code: "ar", name: "Árabe", flag: "🇸🇦" },
+    { code: "hi", name: "Hindi", flag: "🇮🇳" },
+    { code: "nl", name: "Holandês", flag: "🇳🇱" },
+    { code: "sv", name: "Sueco", flag: "🇸🇪" },
+    { code: "no", name: "Norueguês", flag: "🇳🇴" },
+    { code: "da", name: "Dinamarquês", flag: "🇩🇰" },
+    { code: "fi", name: "Finlandês", flag: "🇫🇮" },
+    { code: "pl", name: "Polonês", flag: "🇵🇱" },
+    { code: "tr", name: "Turco", flag: "🇹🇷" },
+    { code: "el", name: "Grego", flag: "🇬🇷" },
+    { code: "he", name: "Hebraico", flag: "🇮🇱" },
+    { code: "th", name: "Tailandês", flag: "🇹🇭" },
+    { code: "vi", name: "Vietnamita", flag: "🇻🇳" },
+    { code: "id", name: "Indonésio", flag: "🇮🇩" },
+    { code: "ms", name: "Malaio", flag: "🇲🇾" },
+    { code: "cs", name: "Tcheco", flag: "🇨🇿" },
+    { code: "ro", name: "Romeno", flag: "🇷🇴" },
+    { code: "hu", name: "Húngaro", flag: "🇭🇺" },
+    { code: "uk", name: "Ucraniano", flag: "🇺🇦" },
+    { code: "bg", name: "Búlgaro", flag: "🇧🇬" },
   ];
 
   const lessons = [
@@ -201,7 +222,7 @@ export default function Home() {
                 Tradutor em Tempo Real
               </h2>
               <p className="text-gray-600">
-                Traduza textos instantaneamente entre diversos idiomas
+                Traduza textos instantaneamente entre 30 idiomas diferentes
               </p>
             </div>
 
@@ -213,10 +234,13 @@ export default function Home() {
                     <SelectTrigger className="flex-1">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="max-h-[300px]">
                       {languages.map((lang) => (
                         <SelectItem key={lang.code} value={lang.code}>
-                          {lang.name}
+                          <span className="flex items-center gap-2">
+                            <span>{lang.flag}</span>
+                            <span>{lang.name}</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -235,10 +259,13 @@ export default function Home() {
                     <SelectTrigger className="flex-1">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="max-h-[300px]">
                       {languages.map((lang) => (
                         <SelectItem key={lang.code} value={lang.code}>
-                          {lang.name}
+                          <span className="flex items-center gap-2">
+                            <span>{lang.flag}</span>
+                            <span>{lang.name}</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -296,6 +323,26 @@ export default function Home() {
                 >
                   {isTranslating ? "Traduzindo..." : "Traduzir"}
                 </Button>
+              </div>
+            </Card>
+
+            {/* Language Grid Display */}
+            <Card className="p-6 max-w-4xl mx-auto">
+              <h3 className="text-xl font-bold mb-4 text-center">
+                Idiomas Disponíveis ({languages.length})
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                {languages.map((lang) => (
+                  <div
+                    key={lang.code}
+                    className="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 transition-all duration-200 border border-blue-100"
+                  >
+                    <span className="text-2xl">{lang.flag}</span>
+                    <span className="text-sm font-medium text-gray-700">
+                      {lang.name}
+                    </span>
+                  </div>
+                ))}
               </div>
             </Card>
           </TabsContent>
